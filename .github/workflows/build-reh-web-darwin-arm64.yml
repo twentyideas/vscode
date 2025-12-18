@@ -109,14 +109,14 @@ jobs:
           key: "builtin-extensions-${{ hashFiles('.build/builtindepshash') }}"
 
       - name: Compile source code
-        run: npm run gulp compile-build
+        run: |
+          npm run compile
+          npm run compile-web
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build vscode-reh-web-darwin-arm64
-        run: |
-          set -e
-          npm run gulp vscode-reh-web-darwin-${{ env.VSCODE_ARCH }}-min-ci
+        run: npm run gulp vscode-reh-web-darwin-${{ env.VSCODE_ARCH }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
