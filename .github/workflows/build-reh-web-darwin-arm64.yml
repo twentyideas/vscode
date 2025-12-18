@@ -2,16 +2,6 @@ name: Build vscode-reh-web-darwin-arm64
 
 on:
   workflow_dispatch:
-    inputs:
-      vm_size:
-        description: "Cirrus Runner Size"
-        required: false
-        default: "xl"
-        type: choice
-        options:
-          - large
-          - xl
-          - 2xl
   push:
     branches:
       - main
@@ -22,7 +12,7 @@ on:
 jobs:
   build:
     name: Build REH Web (darwin-arm64)
-    runs-on: ghcr.io/cirruslabs/macos-runner:sequoia${{ inputs.vm_size && inputs.vm_size != 'large' && format('-{0}', inputs.vm_size) || '-xl' }}
+    runs-on: macos-14
     timeout-minutes: 90
     env:
       NPM_ARCH: arm64
